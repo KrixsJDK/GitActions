@@ -1,0 +1,64 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Enfermedad {
+  id: ID!
+  nombre: String!
+}
+
+type HistorialM {
+  id: ID!
+  sintomas: String!
+  diagnostico: String!
+  medicamentos: [String!]
+  doctorId: Int!
+  estaInternado: Boolean!
+  enfermedades: [Enfermedad!]
+}
+
+type Query {
+  historiales: [HistorialM!]!
+  historial(id: ID!): HistorialM!
+  enfermedades: [Enfermedad!]!
+  enfermedad(id: ID!): Enfermedad!
+}
+
+type Mutation {
+  createHistorial(createHistorialInput: CreateHistorialMInput!): HistorialM!
+  updateHistorial(updateHistorialInput: UpdateHistorialMInput!): HistorialM!
+  removeHistorial(id: ID!): HistorialM!
+  createEnfermedad(createEnfermedadInput: CreateEnfermedadInput!): Enfermedad!
+  updateEnfermedad(updateEnfermedadInput: UpdateEnfermedadInput!): Enfermedad!
+  removeEnfermedad(id: ID!): Enfermedad!
+}
+
+input CreateHistorialMInput {
+  sintomas: String!
+  diagnostico: String!
+  medicamentos: [String!]
+  doctorId: Int!
+  estaInternado: Boolean!
+  enfermedades: [CreateEnfermedadInput!]
+}
+
+input CreateEnfermedadInput {
+  nombre: String!
+  historialId: ID!
+}
+
+input UpdateHistorialMInput {
+  sintomas: String
+  diagnostico: String
+  medicamentos: [String!]
+  doctorId: Int
+  estaInternado: Boolean
+  enfermedades: [CreateEnfermedadInput!]
+  id: ID!
+}
+
+input UpdateEnfermedadInput {
+  nombre: String
+  historialId: ID
+  id: ID!
+}
